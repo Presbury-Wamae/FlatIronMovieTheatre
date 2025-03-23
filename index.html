@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Movie Tickets</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Movie Tickets</h1>
+  </header>
+
+  <main>
+    <!-- Sidebar with Movie List -->
+    <aside class="movie-list">
+      <h2>Available Movies</h2>
+      <ul id="movies">
+        <!-- Populated by JavaScript -->
+      </ul>
+    </aside>
+
+    <!-- Main Section with Movie Details -->
+    <section class="movie-details">
+      <img id="movie-poster" src="" alt="Movie Poster" />
+      <div class="details-text">
+        <h2 id="movie-title">[Movie Title]</h2>
+        <p id="movie-description">[Movie Description]</p>
+        <p>Runtime: <span id="movie-runtime">[Runtime]</span> minutes</p>
+        <p>Tickets Left: <span id="remaining-tickets">[Number]</span></p>
+        <button id="buy-ticket">Buy Ticket</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
