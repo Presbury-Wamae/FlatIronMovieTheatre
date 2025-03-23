@@ -1,0 +1,102 @@
+/* General Reset/Defaults */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    background-color: #f7f7f7;
+    color: #333;
+  }
+  
+  /* Header */
+  header {
+    background-color: red;
+    color: black;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  /* Main Layout */
+  main {
+    display: flex;
+    max-width: 1000px;
+    margin: 2rem auto;
+    background-color: black;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    color: white;
+  }
+  
+  /* Sidebar (Movie List) */
+  .movie-list {
+    width: 30%;
+    background-color: black;
+    border-right: 1px solid #ddd;
+    padding: 1rem;
+    color: white;
+  }
+  
+  .movie-list h2 {
+    margin-bottom: 1;
+  }
+  
+  .movie-list ul {
+    list-style: none;
+  }
+  
+  .movie-list li {
+    padding: 0.5rem 0;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .movie-list li:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Movie Details Section */
+  .movie-details {
+    width: 70%;
+    padding: 2rem;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .movie-details img {
+    width: 200px;
+    height: auto;
+    margin-right: 2rem;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .details-text {
+    max-width: 400px;
+  }
+  
+  .details-text h2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .details-text p {
+    margin-bottom: 0.5rem;
+  }
+  
+  #buy-ticket {
+    background-color: blue;
+    color: black;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    border-radius: 4px;
+  }
+  
+  #buy-ticket:hover {
+    background-color: red;
+  }
+  
