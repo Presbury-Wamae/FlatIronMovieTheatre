@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const remainingTickets = document.getElementById("remaining-tickets");
     const buyButton = document.getElementById("buy-ticket");
   
-    const API_URL = "http://localhost:3000/films";
+    const API_URL = "https://raw.githubusercontent.com/Presbury-Wamae/FlatIronMovieTheatre/main/db.json";
   // Store the selected movie
     let currentMovie = null; 
   
