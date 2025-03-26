@@ -1,17 +1,159 @@
-#FLATIRONMOVIETHEATRE
-Please make sure the server is running before you use the website.
-You can do this by running "json-server --watch db.json" on your Terminal.
+# FlatIronMovieTheatre
 
-See the first movie's details, including its poster, title, runtime, showtime, and available tickets when the page loads. The number of available tickets will need to be derived by subtracting the number of tickets_sold from the theater's capacity.
+Flatiron Movie Theater is open for business! FlatIronMovieTheatre is a web application that allows users to browse movie listings and purchase tickets.
 
-See a menu of all movies on the left side of the page in the ul#films element when the page loads. (optional: you can style each film in the list by adding the classes film item to each li element.) There is a placeholder li in the ul#films element that is hardcoded in the HTML — feel free to remove that element by editing the HTML file directly, or use JavaScript to remove the placeholder element before populating the list. 
+## Demo
 
-Buy a ticket for a movie. After clicking the "Buy Ticket" button, I should see the number of available tickets decreasing on the frontend. I should not be able to buy a ticket if the showing is sold out (if there are 0 tickets available). A persistence mechanism is needed for this feature. Read the following paragraph for more details.
+For a visual representation of how the app should function, refer to the provided GIF demo.
 
-When a ticket is purchased, the app should:
+## Features
 
-Persist the updated number of tickets_sold on the server. Remember, the frontend shows the number of available tickets based on the tickets_sold and the capacity, so only the tickets_sold should be updated on the backend when a ticket is purchased.
+As a user, you can:
+- View details of the first movie, including its poster, title, runtime, showtime, and available tickets.
+- Browse a menu of all movies displayed on the left side of the page.
+- Purchase tickets for a selected movie, decreasing the number of available tickets.
+- Prevent ticket purchases if a movie is sold out.
+- Delete movies from the list and the server.
+- Display a "Sold Out" status when no tickets are available.
 
-Delete a film from the server. Add a delete button next to each film in the ul#films menu. When the button is clicked, remove the film from the list and also delete the film on the server
+## API Endpoints
 
-When a movie is sold out (when there are no available tickets remaining), indicate that the movie is sold out by changing the button text to "Sold Out". Also update the film item in the ul#films menu by adding a class of sold-out to the film. 
+### Retrieve Film Data
+#### Fetch the First Movie
+```
+GET /films/1
+```
+##### Example Response:
+```json
+{
+  "id": "1",
+  "title": "The Giant Gila Monster",
+  "runtime": "108",
+  "capacity": 30,
+  "showtime": "04:00PM",
+  "tickets_sold": 27,
+  "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
+  "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
+}
+```
+
+#### Fetch All Movies
+```
+GET /films
+```
+##### Example Response:
+```json
+[
+   {
+     "id": "1",
+     "title": "The Giant Gila Monster",
+     "runtime": "108",
+     "capacity": 30,
+     "showtime": "04:00PM",
+     "tickets_sold": 27,
+     "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
+     "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
+   },
+   {
+     "id": "2",
+     "title": "Manos: The Hands Of Fate",
+     "runtime": "118",
+     "capacity": 50,
+     "showtime": "06:45PM",
+     "tickets_sold": 44,
+     "description": "A family gets lost on the road and stumbles upon a hidden, underground, devil-worshiping cult led by the fearsome Master and his servant Torgo.",
+     "poster": "https://www.gstatic.com/tv/thumb/v22vodart/47781/p47781_v_v8_ac.jpg"
+   }
+]
+```
+
+### Purchase a Ticket
+```
+PATCH /films/:id
+```
+#### Request Headers:
+```json
+{
+  "Content-Type": "application/json"
+}
+```
+#### Request Body:
+```json
+{
+  "tickets_sold": 28
+}
+```
+##### Example Response:
+```json
+{
+  "id": "1",
+  "title": "The Giant Gila Monster",
+  "runtime": "108",
+  "capacity": 30,
+  "showtime": "04:00PM",
+  "tickets_sold": 28,
+  "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
+  "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
+}
+```
+
+### Add a Ticket Purchase Record
+```
+POST /tickets
+```
+#### Request Body:
+```json
+{
+   "film_id": "28",
+   "number_of_tickets": 5
+}
+```
+##### Example Response:
+```json
+{
+   "id": "1",
+   "film_id": "28",
+   "number_of_tickets": 5
+}
+```
+
+### Delete a Film
+```
+DELETE /films/:id
+```
+##### Example Response:
+```json
+{}
+```
+
+## UI Behavior
+- When a movie sells out, the "Buy Ticket" button should change to "Sold Out".
+- The movie in the list should be marked as sold out by adding a `sold-out` class.
+
+Example:
+```html
+<ul id="films">
+   <li class="film item">(Title of film)</li>
+   <li class="sold-out film item">(Title of a sold-out film)</li>
+   <li class="film item">(Title of film)</li>
+</ul>
+```
+
+## Setup Instructions
+1. Clone this repository.
+2. Open `index.html` in a browser to test the application.
+3. Ensure you have a local JSON server running to serve film data.
+4. Modify `db.json` as needed for testing different scenarios.
+
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
+- JSON Server
+
+## Author
+Flatiron School
+
+## License
+This project is licensed under the MIT License.
+
