@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+ 
     const moviesList = document.getElementById("movies");
     const moviePoster = document.getElementById("movie-poster");
     const movieTitle = document.getElementById("movie-title");
@@ -8,8 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const buyButton = document.getElementById("buy-ticket");
   
     const API_URL = "http://localhost:3000/films";
-  
-    let currentMovie = null; // Store the selected movie
+  // Store the selected movie
+    let currentMovie = null; 
   
     // Fetch and display the first movie
     function fetchFirstMovie() {
@@ -17,16 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => response.json())
         .then((movies) => {
           if (movies.length > 0) {
-            displayMovie(movies[0]); // Show the first movie
+            // Show the first movie
+            displayMovie(movies[0]); 
           }
-          displayMoviesList(movies); // Populate movie list
+          // Populate movie list
+          displayMoviesList(movies); 
         })
         .catch((error) => console.error("Error fetching movies:", error));
     }
   
     // Display a movie's details
     function displayMovie(movie) {
-      currentMovie = movie; // Store the selected movie
+      // Store the selected movie
+      currentMovie = movie; 
   
       moviePoster.src = movie.poster;
       movieTitle.textContent = movie.title;
@@ -47,23 +51,27 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // Populate the sidebar with movies
     function displayMoviesList(movies) {
-      moviesList.innerHTML = ""; // Clear existing list
+      // Clear existing list
+      moviesList.innerHTML = ""; 
   
       movies.forEach((movie) => {
         const listItem = document.createElement("li");
         listItem.textContent = movie.title;
         listItem.classList.add("film-item");
-        listItem.dataset.id = movie.id; // Store movie ID for selection
+        // Store movie ID for selection
+        listItem.dataset.id = movie.id; 
   
         // Click event to show movie details
-        listItem.addEventListener("click", () => displayMovie(movie));
+        listItem.addEventListener("click", () => displayMovie(movie)
+   )
   
         // Add delete button
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "🗑️";
         deleteButton.classList.add("delete-btn");
         deleteButton.addEventListener("click", (event) => {
-          event.stopPropagation(); // Prevent movie selection when clicking delete
+          // Prevent movie selection when clicking delete
+          event.stopPropagation(); 
           deleteMovie(movie.id, listItem);
         });
   
@@ -73,7 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     // Buy a ticket
-    buyButton.addEventListener("click", () => {
+    buyButton.addEventListener("click", (e) => {
+      e.preventDefault();
       if (!currentMovie) return;
   
       let availableTickets = currentMovie.capacity - currentMovie.tickets_sold;
